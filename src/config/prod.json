@@ -1,0 +1,8 @@
+{
+  "pmspa-api": {
+    "api": "https://pmspa-api.herokuapp.com",
+    "apiVersion": "v1",
+    "apiVersionBeta": "v1.1"
+  },
+  "CNAME": "pmspa.angelovski.ga"
+}

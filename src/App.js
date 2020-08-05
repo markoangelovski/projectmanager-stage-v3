@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { useStoreActions } from "easy-peasy";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Routes from "./router/Routes.js";
+
+const App = () => {
+  // Check whether the user is authenticated before rendering the app
+  const [initCheck, setInitCheck] = useState(false);
+
+  const { checkAuth } = useStoreActions(actions => actions);
+
+  useEffect(() => {
+    (async () => {
+      await checkAuth();
+      setInitCheck(true);
+    })();
+    // eslint-disable-next-line
+  }, []);
+
+  if (initCheck) {
+    return <Routes />;
+  } else {
+    return null;
+  }
+};
 
 export default App;
