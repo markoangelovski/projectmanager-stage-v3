@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import TitleMain from "../../components/TitleMain/TitleMain.js";
+
 const Error = () => {
   return (
     <>
-      <h1>borked</h1>
+      <TitleMain>borked</TitleMain>
       <Link to={"/"}>Ho Gome</Link>
     </>
   );

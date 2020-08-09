@@ -2,8 +2,8 @@ import React from "react";
 
 import TitleMain from "../../components/TitleMain/TitleMain.js";
 
-const Homepage = () => {
-  return <TitleMain>homepage</TitleMain>;
+const Clock = () => {
+  return <TitleMain>Clock</TitleMain>;
 };
 
-export default Homepage;
+export default Clock;

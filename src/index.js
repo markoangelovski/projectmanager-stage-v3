@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { StoreProvider } from "easy-peasy";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./index.css";
 

@@ -3,15 +3,12 @@ import { Route, Redirect } from "react-router-dom";
 import { useStoreState } from "easy-peasy";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  console.log("protected rest", rest);
-
   const { isLoggedIn } = useStoreState(state => state);
 
   return (
     <Route
       {...rest}
       render={props => {
-        console.log("protected props", props);
         if (isLoggedIn) {
           return <Component {...props} />;
         } else {

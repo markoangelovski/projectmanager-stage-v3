@@ -9,8 +9,6 @@ const Login = props => {
   const { isLoggedIn } = useStoreState(state => state);
   const { logIn } = useStoreActions(actions => actions);
 
-  console.log("login props", props);
-
   const handleRedirect = () => {
     if (props.location.state) {
       // Redirect the user to the previous page

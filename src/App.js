@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useStoreActions } from "easy-peasy";
 
-import Routes from "./router/Routes.js";
+import Layout from "./pages/Layout/Layout.js";
 
 const App = () => {
   // Check whether the user is authenticated before rendering the app
@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   if (initCheck) {
-    return <Routes />;
+    return <Layout />;
   } else {
     return null;
   }

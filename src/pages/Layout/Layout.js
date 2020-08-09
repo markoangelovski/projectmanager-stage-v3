@@ -1,0 +1,26 @@
+import React from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+
+import Routes from "../../router/Routes.js";
+
+import NavMain from "../../components/NavMain/NavMain.js";
+import NavSide from "../../components/NavSide/NavSide.js";
+
+const Layout = props => {
+  return (
+    <>
+      <NavMain />
+      <Container fluid>
+        <Row>
+          <NavSide />
+          <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <Routes />
+          </main>
+        </Row>
+      </Container>
+    </>
+  );
+};
+
+export default Layout;

@@ -2,8 +2,8 @@ import React from "react";
 
 import TitleMain from "../../components/TitleMain/TitleMain.js";
 
-const Homepage = () => {
-  return <TitleMain>homepage</TitleMain>;
+const Projects = () => {
+  return <TitleMain>Projects</TitleMain>;
 };
 
-export default Homepage;
+export default Projects;
