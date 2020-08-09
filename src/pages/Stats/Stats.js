@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStoreState, useStoreActions } from "easy-peasy";
-import Button from "react-bootstrap/Button";
+import moment from "moment";
 
 import TitleMain from "../../components/TitleMain/TitleMain.js";
-// import DayStatsTotal from "../../components/DayStatsTotal/DayStatsTotal";
-import DateRangePicker from "../../components/DateRangePicker/DateRangePicker";
 import DayStatItem from "../../components/DayStatItem/DayStatItem";
 
 const Stats = () => {
-  const { dayStart, dayEnd, dayStats } = useStoreState(state => state);
+  const { dayStart, dayEnd, dayStats, statsFetched } = useStoreState(
+    state => state
+  );
   const { getDayStats } = useStoreActions(actions => actions);
 
   const query = new URLSearchParams(`start=${dayStart}&end=${dayEnd}`);
 
+  const initStart = moment().subtract(1, "weeks").format("YYYY-MM-DD");
+
+  useEffect(() => {
+    query.set("start", initStart);
+    (async () => {
+      !statsFetched && (await getDayStats(query));
+    })();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <>
-      <TitleMain>Stats</TitleMain>
-      <DateRangePicker callFunction={getDayStats} query={query} />
-      {/* <DayStatsTotal /> */}
+      <TitleMain
+        callFunction={getDayStats}
+        query={query}
+        mainNav={"#/stats"}
+        secondNav={"#/stats/total"}
+      >
+        {"Stats"}
+        {"Total"}
+      </TitleMain>
       {dayStats.map(stat => (
         <DayStatItem key={stat.date} stat={stat} />
       ))}

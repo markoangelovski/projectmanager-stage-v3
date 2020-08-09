@@ -18,11 +18,11 @@ const HoursStatsGauge = ({ seriesData, type }) => {
     color = "#f90010";
   }
 
-  const [series, setSeries] = useState(
+  const series = useState(
     // Number values to be displayed in the graph
     [hours]
   );
-  const [options, setOptions] = useState({
+  const options = useState({
     chart: {
       type: "radialBar"
     },
@@ -100,8 +100,8 @@ const HoursStatsGauge = ({ seriesData, type }) => {
     <div style={{ position: "absolute" }}>
       <div id="chart">
         <Chart
-          options={options}
-          series={series}
+          options={options[0]}
+          series={series[0]}
           type="radialBar"
           width="120px"
           height="120px"

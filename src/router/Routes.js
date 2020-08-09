@@ -10,6 +10,8 @@ import Tasks from "../pages/Tasks/Tasks.js";
 import Clock from "../pages/Clock/Clock.js";
 import Calendar from "../pages/Calendar/Calendar.js";
 import Stats from "../pages/Stats/Stats.js";
+import StatsTotal from "../pages/StatsTotal/StatsTotal.js";
+import StatTask from "../pages/StatTask/StatTask.js";
 import Login from "../pages/Login/Login.js";
 import Error from "../pages/Error/Error.js";
 
@@ -22,6 +24,8 @@ const Routes = () => {
       <ProtectedRoute exact path="/clock" component={Clock} />
       <ProtectedRoute exact path="/calendar" component={Calendar} />
       <ProtectedRoute exact path="/stats" component={Stats} />
+      <ProtectedRoute exact path="/stats/total" component={StatsTotal} />
+      <ProtectedRoute exact path="/stats/:projectId" component={StatTask} />
       <Route exact path="/login" component={Login} />
       <Route path="*" component={Error} />
     </Switch>

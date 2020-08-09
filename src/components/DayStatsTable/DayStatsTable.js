@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
@@ -7,12 +8,6 @@ import Card from "react-bootstrap/Card";
 import { FaCheck, FaTimes, FaBook } from "react-icons/fa";
 
 import { TableRowFix, EventRowCell } from "./DayStatsTable.styles.js";
-
-// title(pin):"Supervision"
-// duration(pin):0.75
-// booked(pin):false
-// task(pin):"IP_Supervision"
-// kanboard(pin):"https://cmgc.rocks/project/711/task/40149"
 
 const DayStatsTableRow = ({ event }) => {
   const [toggle, setToggle] = useState(false);
@@ -28,7 +23,7 @@ const DayStatsTableRow = ({ event }) => {
           <small className="text-muted"> h</small>
         </td>
         <EventRowCell>
-          <span>{event.task}</span>
+          <Link to={`/stats/${event.taskId}`}>{event.task}</Link>
           {event.kanboard && (
             <FaBook
               onClick={() =>

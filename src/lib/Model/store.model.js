@@ -26,8 +26,9 @@ const store = createStore({
   dayStart: moment().startOf("month").format("YYYY-MM-DD"),
   dayEnd: moment().format("YYYY-MM-DD"),
   // Stats state
+  statsFetched: false,
   dayStats: [],
-  dayStatsTotal: {},
+  dayStatsTotal: [],
   taskStats: [],
   // User thunks
   logIn: thunk((actions, payload) => logIn(actions, payload)),
