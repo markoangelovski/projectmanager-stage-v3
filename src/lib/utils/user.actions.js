@@ -1,7 +1,7 @@
 import {
+  checkAuthCall,
   logInCall,
-  logOutCall,
-  checkAuthCall
+  logOutCall
 } from "../drivers/User/user.driver.js";
 
 const setIsBackendAlive = (state, payload) => {

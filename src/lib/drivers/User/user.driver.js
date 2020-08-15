@@ -49,4 +49,4 @@ const logOutCall = () => {
   });
 };
 
-module.exports = { checkAuthCall, logInCall, logOutCall };
+export { checkAuthCall, logInCall, logOutCall };
