@@ -5,6 +5,7 @@ import ProtectedRoute from "../components/Protected/Protected.route.js";
 
 // Page imports
 import Homepage from "../pages/Homepage/Homepage.js";
+import Profile from "../pages/Profile/Profile.js";
 import Projects from "../pages/Projects/Projects.js";
 import Tasks from "../pages/Tasks/Tasks.js";
 import Clock from "../pages/Clock/Clock.js";
@@ -19,6 +20,7 @@ const Routes = () => {
   return (
     <Switch>
       <ProtectedRoute exact path="/" component={Homepage} />
+      <ProtectedRoute exact path="/profile" component={Profile} />
       <ProtectedRoute exact path="/projects" component={Projects} />
       <ProtectedRoute exact path="/tasks" component={Tasks} />
       <ProtectedRoute exact path="/clock" component={Clock} />

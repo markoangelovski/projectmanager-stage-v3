@@ -2,6 +2,7 @@ import moment from "moment";
 import { createStore, thunk, action } from "easy-peasy";
 
 import {
+  setIsBackendAlive,
   setIsLoggedIn,
   logIn,
   logOut,
@@ -20,6 +21,8 @@ import {
 } from "../utils/stats.actions.js";
 
 const store = createStore({
+  // Backend state
+  isBackendAlive: true,
   // User state
   isLoggedIn: false,
   // Events state
@@ -40,6 +43,10 @@ const store = createStore({
     getDayStatsTotal(actions, payload)
   ),
   getTaskStats: thunk((actions, payload) => getTaskStats(actions, payload)),
+  // Backend actions
+  setIsBackendAlive: action((state, payload) =>
+    setIsBackendAlive(state, payload)
+  ),
   // User actions
   setIsLoggedIn: action((state, payload) => setIsLoggedIn(state, payload)),
   // Events actions

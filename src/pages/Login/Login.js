@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStoreState, useStoreActions } from "easy-peasy";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
+import { FormWrapper, FormPlaceholder, ErrorMsg } from "./Login.styles";
 
 const Login = props => {
   const [email, setEmail] = useState("");
+  const [isEmailOk, setIsEmailOk] = useState(true);
   const [password, setPassword] = useState("");
+  const [isPasswordOk, setIsPasswordOk] = useState(true);
   const [loginErr, setLoginErr] = useState(false);
 
-  const { isLoggedIn } = useStoreState(state => state);
+  const { isBackendAlive, isLoggedIn } = useStoreState(state => state);
   const { logIn } = useStoreActions(actions => actions);
 
   const handleRedirect = () => {
@@ -23,49 +30,93 @@ const Login = props => {
     e.preventDefault();
     setLoginErr(false);
 
-    const res = await logIn({ email, password });
+    if (isEmailOk && isPasswordOk) {
+      const res = await logIn({ email, password });
 
-    if (res) {
-      setLoginErr(false);
-      handleRedirect();
-    } else {
-      setLoginErr(true);
+      if (res) {
+        setLoginErr(false);
+        handleRedirect();
+      } else {
+        setIsEmailOk(true);
+        setIsPasswordOk(true);
+        setLoginErr(true);
+      }
     }
   };
 
-  if (isLoggedIn) {
+  useEffect(() => {
     // If user is logged in when accessing /login route, redirect to homepage
-    handleRedirect();
-    return null;
-  } else {
-    return (
-      <>
-        <h1>login page</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            name="password"
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <input type="submit" />
-        </form>
-        <p style={{ color: "red", display: loginErr ? "block" : "none" }}>
-          An error occurred, please try again.
-        </p>
-      </>
-    );
-  }
+    isLoggedIn && handleRedirect();
+  }, []);
+
+  if (isLoggedIn) return null;
+
+  return (
+    <Col md={{ span: 3, offset: 6 }}>
+      <FormWrapper>
+        <FormPlaceholder>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                required
+                size="sm"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                onBlur={e =>
+                  email.length < 6 ? setIsEmailOk(false) : setIsEmailOk(true)
+                }
+              />
+              {!isEmailOk && (
+                <ErrorMsg>Email needs to have at least 6 characters.</ErrorMsg>
+              )}
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                required
+                size="sm"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                onBlur={e =>
+                  password.length < 6
+                    ? setIsPasswordOk(false)
+                    : setIsPasswordOk(true)
+                }
+              />
+              {!isPasswordOk && (
+                <ErrorMsg>
+                  Password needs to have at least 6 characters.
+                </ErrorMsg>
+              )}
+              {loginErr && (
+                <ErrorMsg>Invalid credentials. Please try again.</ErrorMsg>
+              )}
+            </Form.Group>
+
+            <Button
+              disabled={!isBackendAlive || !isPasswordOk || !isEmailOk}
+              variant="primary"
+              type="submit"
+              size="sm"
+            >
+              Submit
+            </Button>
+            {!isBackendAlive && (
+              <ErrorMsg>
+                Service is currently down. Please try again later.
+              </ErrorMsg>
+            )}
+          </Form>
+        </FormPlaceholder>
+      </FormWrapper>
+    </Col>
+  );
 };
 
 export default Login;
