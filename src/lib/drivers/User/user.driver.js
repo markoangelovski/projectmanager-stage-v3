@@ -3,14 +3,18 @@ const {
 } = require(`../../../config/${process.env.REACT_APP_API_CONFIG}.json`);
 
 const checkAuthCall = () => {
+  let status;
   return new Promise((resolve, reject) => {
     fetch(`${api}/${apiVersion}/auth`, {
       method: "POST",
       // Credentials: include for sending the cookie from the browser to the backend
       credentials: "include"
     })
-      .then(res => res.json())
-      .then(user => resolve(user))
+      .then(res => {
+        status = res.status;
+        return res.json();
+      })
+      .then(msg => resolve({ status, ...msg }))
       .catch(error => reject(error));
   });
 };
@@ -45,4 +49,4 @@ const logOutCall = () => {
   });
 };
 
-module.exports = { checkAuthCall, logInCall, logOutCall };
+export { checkAuthCall, logInCall, logOutCall };
