@@ -47,6 +47,7 @@ const Login = props => {
   useEffect(() => {
     // If user is logged in when accessing /login route, redirect to homepage
     isLoggedIn && handleRedirect();
+    // eslint-disable-next-line
   }, []);
 
   if (isLoggedIn) return null;
