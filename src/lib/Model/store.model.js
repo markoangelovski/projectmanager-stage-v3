@@ -9,6 +9,12 @@ import {
   checkAuth
 } from "../utils/user.actions.js";
 
+import {
+  getTaskDocs,
+  setTaskDocs,
+  setHasMoreTaskDocs
+} from "../utils/tasks.actions.js";
+
 import { setDayStart, setDayEnd } from "../utils/events.actions.js";
 
 import {
@@ -25,8 +31,12 @@ const store = createStore({
   isBackendAlive: true,
   // User state
   isLoggedIn: false,
+  // Tasks state
+  taskDocs: [],
+  taskDocsSkip: 0,
+  hasMoreTaskDocs: false,
   // Events state
-  dayStart: moment().startOf("month").format("YYYY-MM-DD"),
+  dayStart: moment().startOf("week").format("YYYY-MM-DD"),
   dayEnd: moment().format("YYYY-MM-DD"),
   // Stats state
   statsFetched: false,
@@ -37,6 +47,8 @@ const store = createStore({
   logIn: thunk((actions, payload) => logIn(actions, payload)),
   logOut: thunk(actions => logOut(actions)),
   checkAuth: thunk((actions, payload) => checkAuth(actions, payload)),
+  // Tasks thunks
+  getTaskDocs: thunk((actions, payload) => getTaskDocs(actions, payload)),
   // Stats thunks
   getDayStats: thunk((actions, payload) => getDayStats(actions, payload)),
   getDayStatsTotal: thunk((actions, payload) =>
@@ -49,6 +61,11 @@ const store = createStore({
   ),
   // User actions
   setIsLoggedIn: action((state, payload) => setIsLoggedIn(state, payload)),
+  // Tasks actions
+  setTaskDocs: action((state, payload) => setTaskDocs(state, payload)),
+  setHasMoreTaskDocs: action((state, payload) =>
+    setHasMoreTaskDocs(state, payload)
+  ),
   // Events actions
   setDayStart: action((state, dayStart) => setDayStart(state, dayStart)),
   setDayEnd: action((state, dayEnd) => setDayEnd(state, dayEnd)),

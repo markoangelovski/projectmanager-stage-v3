@@ -4,7 +4,7 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 import TitleMain from "../../components/TitleMain/TitleMain.js";
 import TaskStats from "../../components/TaskStats/TaskStats";
 
-const StatTask = props => {
+const StatsTasks = props => {
   const { dayStart, dayEnd, taskStats } = useStoreState(state => state);
   const { setTaskStats, getTaskStats } = useStoreActions(actions => actions);
 
@@ -32,4 +32,4 @@ const StatTask = props => {
   );
 };
 
-export default StatTask;
+export default StatsTasks;

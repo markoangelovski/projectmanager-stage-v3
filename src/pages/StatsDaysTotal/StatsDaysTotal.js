@@ -4,7 +4,7 @@ import { useStoreState, useStoreActions } from "easy-peasy";
 import TitleMain from "../../components/TitleMain/TitleMain.js";
 import DayStatsTotal from "../../components/DayStatsTotal/DayStatsTotal";
 
-const StatsTotal = () => {
+const StatsDaysTotal = () => {
   const { dayStart, dayEnd, dayStatsTotal } = useStoreState(state => state);
   const { getDayStatsTotal } = useStoreActions(actions => actions);
 
@@ -37,4 +37,4 @@ const StatsTotal = () => {
   );
 };
 
-export default StatsTotal;
+export default StatsDaysTotal;

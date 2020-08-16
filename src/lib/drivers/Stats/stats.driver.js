@@ -28,4 +28,17 @@ const getTaskStatsCall = payload => {
   });
 };
 
-module.exports = { getDayStatsCall, getTaskStatsCall };
+const getTasksDocsCall = payload => {
+  return new Promise((resolve, reject) => {
+    fetch(`${api}/${apiVersion}/stats/tasks?${payload}`, {
+      method: "GET",
+      // Credentials: include for setting the cookie in browser
+      credentials: "include"
+    })
+      .then(res => res.json())
+      .then(stats => resolve(stats))
+      .catch(error => reject(error));
+  });
+};
+
+export { getDayStatsCall, getTaskStatsCall, getTasksDocsCall };
