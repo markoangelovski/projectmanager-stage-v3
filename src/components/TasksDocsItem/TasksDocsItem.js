@@ -13,7 +13,7 @@ const TasksDocsItem = ({ tasks }) => {
             <Card.Subtitle className="mb-2 text-muted">{task.pl}</Card.Subtitle>
             <Card.Text>{task.description}</Card.Text>
             <Card.Text>
-              Tasks: {task.tasksCount || 0} Notes: {task.notesCount || 0}
+              Events: {task.eventsCount || 0} Notes: {task.notesCount || 0}
             </Card.Text>
             {task.kanboard && (
               <Card.Link href={task.kanboard} target="_blank">
