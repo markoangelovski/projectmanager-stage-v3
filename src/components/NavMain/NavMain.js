@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
 
 import "./NavMain.css";
@@ -27,8 +25,7 @@ const NavMain = () => {
           className="position-absolute"
           aria-controls="sidebarMenu"
           onClick={() => {
-            const nav = document.getElementById("sidebarMenu");
-            nav.classList.toggle("show");
+            document.getElementById("sidebarMenu").classList.toggle("show");
           }}
         />
         <input
