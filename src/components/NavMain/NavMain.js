@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useStoreActions, useStoreState } from "easy-peasy";
 
@@ -15,16 +16,29 @@ const NavMain = () => {
       <Navbar
         bg="dark"
         variant="dark"
+        collapseOnSelect
+        expand="md"
         className="sticky-top flex-md-nowrap p-0 shadow"
       >
-        <Navbar.Brand className="col-md-3 col-lg-2 mr-0 px-3">PM</Navbar.Brand>
-        <Nav>
-          <Nav.Item>
-            <Link className="nav-link" to={"/"}>
-              Home
-            </Link>
-          </Nav.Item>
-          <Nav.Item>
+        <Navbar.Brand className="col-md-3 col-lg-2 mr-0 px-3">
+          jBot
+        </Navbar.Brand>
+        <Navbar.Toggle
+          className="position-absolute"
+          aria-controls="sidebarMenu"
+          onClick={() => {
+            const nav = document.getElementById("sidebarMenu");
+            nav.classList.toggle("show");
+          }}
+        />
+        <input
+          className="form-control form-control-dark w-100"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+        ></input>
+        <Nav as="ul" className="px-3">
+          <Nav.Item as="li">
             <Nav.Link onClick={() => logOut()}>Logout</Nav.Link>
           </Nav.Item>
         </Nav>

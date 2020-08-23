@@ -15,6 +15,8 @@ const NavSide = () => {
     if (elem) elem.classList.remove("active");
     // Add .active to the clicked item
     e.target.classList.add("active");
+    // Remove .show class to hide the sidebar when item is clicked on mobile
+    document.getElementById("sidebarMenu").classList.remove("show");
   };
 
   return (
