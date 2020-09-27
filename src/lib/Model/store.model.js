@@ -15,7 +15,12 @@ import {
   setHasMoreTaskDocs
 } from "../utils/tasks.actions.js";
 
-import { setDayStart, setDayEnd } from "../utils/events.actions.js";
+import {
+  setDayStart,
+  setDayEnd,
+  editEvent,
+  updateEvent
+} from "../utils/events.actions.js";
 
 import {
   getDayStats,
@@ -49,6 +54,10 @@ const store = createStore({
   checkAuth: thunk((actions, payload) => checkAuth(actions, payload)),
   // Tasks thunks
   getTaskDocs: thunk((actions, payload) => getTaskDocs(actions, payload)),
+  // Events thunks
+  editEvent: thunk((actions, eventId, payload) =>
+    editEvent(actions, eventId, payload)
+  ),
   // Stats thunks
   getDayStats: thunk((actions, payload) => getDayStats(actions, payload)),
   getDayStatsTotal: thunk((actions, payload) =>
@@ -69,6 +78,7 @@ const store = createStore({
   // Events actions
   setDayStart: action((state, dayStart) => setDayStart(state, dayStart)),
   setDayEnd: action((state, dayEnd) => setDayEnd(state, dayEnd)),
+  updateEvent: action((state, payload) => updateEvent(state, payload)),
   // Stats actions
   setDayStats: action((state, dayStats) => setDayStats(state, dayStats)),
   setDayStatsTotal: action((state, dayStats) =>
