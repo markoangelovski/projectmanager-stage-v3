@@ -2,12 +2,21 @@ import React from "react";
 import CardColumns from "react-bootstrap/CardColumns";
 import Card from "react-bootstrap/Card";
 
+import MarkTaskDone from "../MarkTaskDone/MarkTaskDone.js";
+
 const TasksDocsItem = ({ tasks }) => {
   return (
     <CardColumns>
       {tasks.map(task => (
         <Card key={task._id}>
-          <Card.Header>{task.column}</Card.Header>
+          <Card.Header>
+            {task.column}
+            <MarkTaskDone
+              done={task.done}
+              taskId={task._id}
+              taskTitle={task.title}
+            />
+          </Card.Header>
           <Card.Body>
             <Card.Title>{task.title}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{task.pl}</Card.Subtitle>

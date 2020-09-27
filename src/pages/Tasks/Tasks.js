@@ -11,15 +11,19 @@ const Tasks = () => {
   );
   const { getTaskDocs } = useStoreActions(actions => actions);
 
+  const query = new URLSearchParams(`skip=${taskDocsSkip}`);
+  const done = window.location.hash.split("=")[1];
+  if (done === "true" || done === "false") query.append("done", done);
+
   useEffect(() => {
     (async () => {
-      !taskDocs.length && (await getTaskDocs(taskDocsSkip));
+      !taskDocs.length && (await getTaskDocs(query));
     })();
     // eslint-disable-next-line
   }, []);
 
   const fetchData = async () => {
-    await getTaskDocs(taskDocsSkip);
+    await getTaskDocs(query);
   };
 
   return (

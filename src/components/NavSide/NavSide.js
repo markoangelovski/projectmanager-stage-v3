@@ -103,7 +103,7 @@ const NavSide = () => {
               <Link
                 onClick={handleNavItemClick}
                 className="nav-link"
-                to={"/tasks"}
+                to={"/tasks?done=false"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

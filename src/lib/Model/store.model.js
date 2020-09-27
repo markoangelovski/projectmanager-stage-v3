@@ -12,7 +12,9 @@ import {
 import {
   getTaskDocs,
   setTaskDocs,
-  setHasMoreTaskDocs
+  setHasMoreTaskDocs,
+  editTask,
+  updateTaskDocs
 } from "../utils/tasks.actions.js";
 
 import {
@@ -54,6 +56,7 @@ const store = createStore({
   checkAuth: thunk((actions, payload) => checkAuth(actions, payload)),
   // Tasks thunks
   getTaskDocs: thunk((actions, payload) => getTaskDocs(actions, payload)),
+  editTask: thunk((actions, payload) => editTask(actions, payload)),
   // Events thunks
   editEvent: thunk((actions, eventId, payload) =>
     editEvent(actions, eventId, payload)
@@ -75,6 +78,7 @@ const store = createStore({
   setHasMoreTaskDocs: action((state, payload) =>
     setHasMoreTaskDocs(state, payload)
   ),
+  updateTaskDocs: action((state, payload) => updateTaskDocs(state, payload)),
   // Events actions
   setDayStart: action((state, dayStart) => setDayStart(state, dayStart)),
   setDayEnd: action((state, dayEnd) => setDayEnd(state, dayEnd)),
