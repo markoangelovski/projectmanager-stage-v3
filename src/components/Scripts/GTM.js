@@ -1,9 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import config from "../../config";
 
 const {
   JBOTdataLayer: { SiteLocalContainer }
-} = require("../../config");
+} = config;
 
 const GTM = () => {
   return (
