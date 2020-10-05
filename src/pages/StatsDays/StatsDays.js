@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 
+import PageMetaData from "../../components/PageMetaData/PageMetaData.js";
 import TitleMain from "../../components/TitleMain/TitleMain.js";
 import DayStatItem from "../../components/DayStatItem/DayStatItem";
 
@@ -21,6 +22,7 @@ const StatsDays = () => {
 
   return (
     <>
+      <PageMetaData title={`Day stats (${dayStats.length}) | jBot`} />
       <TitleMain
         callFunction={getDayStats}
         query={query}

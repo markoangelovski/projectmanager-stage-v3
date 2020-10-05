@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useStoreState, useStoreActions } from "easy-peasy";
 import InfiniteScroll from "react-infinite-scroll-component";
 
+import PageMetaData from "../../components/PageMetaData/PageMetaData.js";
 import TitleMain from "../../components/TitleMain/TitleMain.js";
 import TasksDocsItem from "../../components/TasksDocsItem/TasksDocsItem.js";
 
@@ -26,8 +27,11 @@ const Tasks = () => {
     await getTaskDocs(query);
   };
 
+  const taskCount = taskDocs.reduce((acc, curr) => acc + curr.tasks.length, 0);
+
   return (
     <>
+      <PageMetaData title={`Tasks (${taskCount}) | jBot`} />
       <TitleMain
         callFunction
         query

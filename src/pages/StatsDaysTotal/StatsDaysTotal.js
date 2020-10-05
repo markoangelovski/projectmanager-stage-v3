@@ -30,8 +30,8 @@ const StatsDaysTotal = () => {
         {"Stats"}
         {"Total"}
       </TitleMain>
-      {dayStatsTotal.map(stat => (
-        <DayStatsTotal key={stat.date} stat={stat} />
+      {dayStatsTotal.map((stat, i) => (
+        <DayStatsTotal key={i} stat={stat} />
       ))}
     </>
   );

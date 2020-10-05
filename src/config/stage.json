@@ -1,8 +1,13 @@
 {
+  "canonical": "https://markoangelovski.github.io/projectmanager-stage-v3",
   "pmspa-api": {
     "api": "https://pmspa-api-stg.herokuapp.com",
     "apiVersion": "v1",
     "apiVersionBeta": "v1.1"
   },
-  "CNAME": ""
+  "CNAME": "",
+  "JBOTdataLayer": {
+    "SiteLocalContainer": "GTM-NNWHRC6",
+    "GoogleAnalyticsLocal": "UA-179505223-1"
+  }
 }
