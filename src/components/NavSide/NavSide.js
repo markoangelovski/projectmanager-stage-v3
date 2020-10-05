@@ -15,6 +15,8 @@ const NavSide = () => {
     if (elem) elem.classList.remove("active");
     // Add .active to the clicked item
     e.target.classList.add("active");
+    // Remove .show class to hide the sidebar when item is clicked on mobile
+    document.getElementById("sidebarMenu").classList.remove("show");
   };
 
   return (
@@ -101,7 +103,7 @@ const NavSide = () => {
               <Link
                 onClick={handleNavItemClick}
                 className="nav-link"
-                to={"/tasks"}
+                to={"/tasks?done=false"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

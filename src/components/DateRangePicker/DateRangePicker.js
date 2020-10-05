@@ -65,7 +65,6 @@ const DateRangePicker = props => {
         </InputGroup>
       </Form>
     </ButtonToolbar>
-    /* </div> */
   );
 };
 

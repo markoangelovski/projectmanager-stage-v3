@@ -18,20 +18,14 @@ const getDayStats = makeStatsCall(getDayStatsCall, "setDayStats");
 const getDayStatsTotal = makeStatsCall(getDayStatsCall, "setDayStatsTotal");
 const getTaskStats = makeStatsCall(getTaskStatsCall, "setTaskStats");
 
-const setDayStats = (state, dayStats) => {
+const makeStatsSetter = stats => (state, payload) => {
   state.statsFetched = true;
-  state.dayStats = dayStats;
+  state[stats] = payload;
 };
 
-const setDayStatsTotal = (state, dayStatsTotal) => {
-  state.statsFetched = true;
-  state.dayStatsTotal = dayStatsTotal;
-};
-
-const setTaskStats = (state, taskStats) => {
-  state.statsFetched = true;
-  state.taskStats = taskStats;
-};
+const setDayStats = makeStatsSetter("dayStats");
+const setDayStatsTotal = makeStatsSetter("dayStatsTotal");
+const setTaskStats = makeStatsSetter("taskStats");
 
 export {
   getDayStats,

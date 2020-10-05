@@ -5,18 +5,24 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
-import { FaCheck, FaTimes, FaBook } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
 
 import { TableRowFix, EventRowCell } from "./DayStatsTable.styles.js";
 
-const DayStatsTableRow = ({ event }) => {
+import MarkEventBooked from "../MarkEventBooked/MarkEventBooked.js";
+
+const DayStatsTableRow = ({ event, day }) => {
   const [toggle, setToggle] = useState(false);
   return (
     <>
       <TableRowFix>
-        <EventRowCell booked={event.booked} onClick={() => setToggle(!toggle)}>
-          <span>{event.title}</span>
-          {event.booked ? <FaCheck /> : <FaTimes />}
+        <EventRowCell>
+          <span onClick={() => setToggle(!toggle)}>{event.title}</span>
+          <MarkEventBooked
+            booked={event.booked}
+            eventId={event.eventId}
+            eventTitle={event.title}
+          />
         </EventRowCell>
         <td style={{ textAlign: "center" }}>
           {event.duration}
@@ -28,9 +34,9 @@ const DayStatsTableRow = ({ event }) => {
             <FaBook
               onClick={() =>
                 window.open(
-                  `${event.kanboard}#t-${event.duration}`,
+                  `${event.kanboard}#d=${day}&t=${event.duration}`,
                   "",
-                  "resizable=yes,scrollbars=yes,width=800,height=600"
+                  "resizable=yes,scrollbars=yes,width=1024,height=768"
                 )
               }
             />
@@ -77,9 +83,19 @@ const DayStatsTable = ({ stat }) => {
                 </tr>
               </thead>
               <tbody>
-                {stat.events.map((event, i) => (
-                  <DayStatsTableRow key={i} event={event} />
-                ))}
+                {stat.events
+                  .sort(
+                    (a, b) =>
+                      new Date(a.createdAt).getTime() -
+                      new Date(b.createdAt).getTime()
+                  )
+                  .map((event, i) => (
+                    <DayStatsTableRow
+                      key={i}
+                      event={event}
+                      day={moment(stat.day).format("DD-MM")}
+                    />
+                  ))}
               </tbody>
             </Table>
           </Card.Body>

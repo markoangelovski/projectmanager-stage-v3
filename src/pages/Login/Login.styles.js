@@ -4,6 +4,7 @@ export const FormWrapper = styled.div`
   top: 0px;
   bottom: 0px;
   height: 100vh;
+  min-width: 250px;
 `;
 
 export const FormPlaceholder = styled.div`

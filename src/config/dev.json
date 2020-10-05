@@ -1,8 +1,13 @@
 {
+  "canonical": "http://localhost:8080",
   "pmspa-api": {
     "api": "http://localhost:3000",
     "apiVersion": "v1",
     "apiVersionBeta": "v1.1"
   },
-  "CNAME": ""
+  "CNAME": "",
+  "JBOTdataLayer": {
+    "SiteLocalContainer": "GTM-NNWHRC6",
+    "GoogleAnalyticsLocal": "UA-179505223-1"
+  }
 }
