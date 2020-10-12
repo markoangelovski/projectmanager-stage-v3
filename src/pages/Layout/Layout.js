@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 
 import Routes from "../../router/Routes.js";
 
+import AGAdataLayer from "../../components/Scripts/AGAdataLayer.js";
 import GTM from "../../components/Scripts/GTM.js";
 
 import NavMain from "../../components/NavMain/NavMain.js";
@@ -13,6 +14,7 @@ const Layout = props => {
   console.log("I'm being rendered! Layout");
   return (
     <>
+      <AGAdataLayer />
       <GTM />
       <NavMain />
       <Container fluid>

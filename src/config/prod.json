@@ -6,8 +6,13 @@
     "apiVersionBeta": "v1.1"
   },
   "CNAME": "jbot.angelovski.ga",
-  "JBOTdataLayer": {
-    "SiteLocalContainer": "GTM-NNWHRC6",
-    "GoogleAnalyticsLocal": "UA-179505223-1"
+  "GlobalContainer": "GTM-MSH9PKJ",
+  "AGAdataLayer": {
+    "GTM": {
+      "SiteEnvironment":"prod",
+      "SiteLocalContainer": "GTM-NNWHRC6",
+      "GoogleAnalyticsLocal": "UA-179505223-1",
+      "Segment": "6z5fk23GsrGBhyijzsJR6tC5QwHLV4hH"
+    }
   }
 }

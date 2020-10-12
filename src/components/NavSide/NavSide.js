@@ -29,7 +29,12 @@ const NavSide = () => {
         <div className="sidebar-sticky pt-3">
           <Nav as="ul" navbar={false} className="flex-column">
             <Nav.Item as="li">
-              <Link onClick={handleNavItemClick} className="nav-link" to={"/"}>
+              <Link
+                onClick={handleNavItemClick}
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_home"
+                to={"/"}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -51,7 +56,8 @@ const NavSide = () => {
             <Nav.Item as="li">
               <Link
                 onClick={handleNavItemClick}
-                className="nav-link"
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_profile"
                 to={"/profile"}
               >
                 <svg
@@ -77,7 +83,8 @@ const NavSide = () => {
             <Nav.Item as="li">
               <Link
                 onClick={handleNavItemClick}
-                className="nav-link"
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_projects"
                 to={"/projects"}
               >
                 <svg
@@ -102,7 +109,8 @@ const NavSide = () => {
             <Nav.Item as="li">
               <Link
                 onClick={handleNavItemClick}
-                className="nav-link"
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_tasks"
                 to={"/tasks?done=false"}
               >
                 <svg
@@ -126,7 +134,8 @@ const NavSide = () => {
             <Nav.Item as="li">
               <Link
                 onClick={handleNavItemClick}
-                className="nav-link"
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_clock"
                 to={"/clock"}
               >
                 <svg
@@ -150,7 +159,8 @@ const NavSide = () => {
             <Nav.Item as="li">
               <Link
                 onClick={handleNavItemClick}
-                className="nav-link"
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_calendar"
                 to={"/calendar"}
               >
                 <svg
@@ -174,7 +184,8 @@ const NavSide = () => {
             <Nav.Item as="li">
               <Link
                 onClick={handleNavItemClick}
-                className="nav-link"
+                className="nav-link event_menu_click"
+                data-action-detail="side_nav_stats"
                 to={"/stats"}
               >
                 <svg

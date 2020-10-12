@@ -36,7 +36,13 @@ const NavMain = () => {
         ></input>
         <Nav as="ul" className="px-3">
           <Nav.Item as="li">
-            <Nav.Link onClick={() => logOut()}>Logout</Nav.Link>
+            <Nav.Link
+              className="event_menu_click"
+              data-action-detail="main_nav_logout"
+              onClick={() => logOut()}
+            >
+              Logout
+            </Nav.Link>
           </Nav.Item>
         </Nav>
       </Navbar>
