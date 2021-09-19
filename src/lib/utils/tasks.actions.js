@@ -16,7 +16,7 @@ const getTaskDocs = async (actions, payload) => {
 };
 
 const setTaskDocs = (state, docs) => {
-  state.taskDocsSkip += 20;
+  state.taskDocsSkip += 50;
   state.taskDocs = [...state.taskDocs, ...docs];
 };
 

@@ -33,6 +33,13 @@ import {
   setTaskStats
 } from "../utils/stats.actions.js";
 
+import {
+  updateTaskDocsWhenNoteCreated,
+  postNote,
+  updateTaskDocsWhenNoteDeleted,
+  deleteNote
+} from "../utils/notes.actions.js";
+
 const store = createStore({
   // Backend state
   isBackendAlive: true,
@@ -67,6 +74,9 @@ const store = createStore({
     getDayStatsTotal(actions, payload)
   ),
   getTaskStats: thunk((actions, payload) => getTaskStats(actions, payload)),
+  // Notes thunks
+  postNote: thunk((actions, payload) => postNote(actions, payload)),
+  deleteNote: thunk((actions, payload) => deleteNote(actions, payload)),
   // Backend actions
   setIsBackendAlive: action((state, payload) =>
     setIsBackendAlive(state, payload)
@@ -88,7 +98,14 @@ const store = createStore({
   setDayStatsTotal: action((state, dayStats) =>
     setDayStatsTotal(state, dayStats)
   ),
-  setTaskStats: action((state, taskStats) => setTaskStats(state, taskStats))
+  setTaskStats: action((state, taskStats) => setTaskStats(state, taskStats)),
+  // Notes actions
+  updateTaskDocsWhenNoteCreated: action((state, payload) =>
+    updateTaskDocsWhenNoteCreated(state, payload)
+  ),
+  updateTaskDocsWhenNoteDeleted: action((state, payload) =>
+    updateTaskDocsWhenNoteDeleted(state, payload)
+  )
 });
 
 export default store;

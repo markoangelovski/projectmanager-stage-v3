@@ -111,7 +111,7 @@ const NavSide = () => {
                 onClick={handleNavItemClick}
                 className="nav-link event_menu_click"
                 data-action-detail="side_nav_tasks"
-                to={"/tasks?done=false"}
+                to={"/tasks?done=false&column=In Progress"}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

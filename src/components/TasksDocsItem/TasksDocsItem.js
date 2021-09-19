@@ -1,42 +1,72 @@
-import React from "react";
-import CardColumns from "react-bootstrap/CardColumns";
-import Card from "react-bootstrap/Card";
+import React, { useState } from "react";
+import moment from "moment";
 
 import MarkTaskDone from "../MarkTaskDone/MarkTaskDone.js";
 
-const TasksDocsItem = ({ tasks }) => {
+import NoteEditor from "../Notes/NoteEditor.js";
+import NewNote from "../Notes/NewNote.js";
+
+import { EventRowCell, TableRowFix } from "./TasksDocsItem.styles.js";
+import NoteRow from "../Notes/NoteRow.js";
+import TaslExtermalLink from "./TaslExtermalLink.js";
+
+const DayStatsTableRow = ({ task }) => {
+  const renders = React.useRef(0);
+
+  const [toggleDetails, setToggleDetails] = useState(false);
+  const [toggleNewNote, setToggleNewNote] = useState(false);
+
+  const lastNote = task.notes[task.notes.length - 1];
+
   return (
-    <CardColumns>
-      {tasks.map(task => (
-        <Card key={task._id}>
-          <Card.Header>
-            {task.column}
-            <MarkTaskDone
-              done={task.done}
-              taskId={task._id}
-              taskTitle={task.title}
-            />
-          </Card.Header>
-          <Card.Body>
-            <Card.Title>{task.title}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{task.pl}</Card.Subtitle>
-            <Card.Text>{task.description}</Card.Text>
-            <Card.Text>
-              Events: {task.eventsCount || 0} Notes: {task.notesCount || 0}
-            </Card.Text>
-            {task.kanboard && (
-              <Card.Link href={task.kanboard} target="_blank">
-                Kanboard
-              </Card.Link>
-            )}
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">{task.createdAt}</small>
-          </Card.Footer>
-        </Card>
-      ))}
-    </CardColumns>
+    <>
+      <TableRowFix>
+        <EventRowCell>
+          <span onClick={() => setToggleDetails(!toggleDetails)}>
+            {task.title}, {renders.current++}
+          </span>
+        </EventRowCell>
+        <EventRowCell>{task.pl}</EventRowCell>
+        <EventRowCell>
+          {moment(task.dueDate).format("ddd, MMM Do, 'GG.")}
+        </EventRowCell>
+        <EventRowCell>
+          {moment(task.createdAt).format("ddd, MMM Do, 'GG.")}
+        </EventRowCell>
+        <EventRowCell>
+          {moment(task.updatedAt).format("ddd, MMM Do, 'GG.")}
+        </EventRowCell>
+        <EventRowCell>
+          {task.kanboard && <TaslExtermalLink link={task.kanboard} />}
+          <MarkTaskDone
+            done={task.done}
+            taskId={task._id}
+            taskTitle={task.title}
+          />
+          <NewNote setToggleNewNote={setToggleNewNote} />
+        </EventRowCell>
+      </TableRowFix>
+
+      {!toggleDetails && lastNote && <NoteRow note={lastNote} />}
+
+      {toggleDetails && (
+        <>
+          <tr>
+            <td colSpan="6" className="text-muted">
+              {task.description}
+            </td>
+          </tr>
+          {task.notes.map(note => {
+            return <NoteRow key={note._id} note={note} />;
+          })}
+        </>
+      )}
+
+      {toggleNewNote && (
+        <NoteEditor taskId={task._id} setShowNoteEditor={setToggleNewNote} />
+      )}
+    </>
   );
 };
 
-export default TasksDocsItem;
+export default React.memo(DayStatsTableRow);

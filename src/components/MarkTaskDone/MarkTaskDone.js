@@ -13,12 +13,19 @@ const MarkTaskDone = ({ done, taskId, taskTitle }) => {
     )
       editTask({
         taskId,
-        payload: [{ propName: "done", propValue: JSON.stringify(!done) }]
+        payload: [
+          { propName: "done", propValue: JSON.stringify(!done) },
+          { propName: "column", propValue: done ? "In Progress" : "Completed" }
+        ]
       });
   };
 
   return (
-    <EditTaskIcon done={done} onClick={handleEditTask}>
+    <EditTaskIcon
+      title={`Mark task ${taskTitle} as done`}
+      done={done}
+      onClick={handleEditTask}
+    >
       {done ? <FaCheck /> : <FaTimes />}
     </EditTaskIcon>
   );

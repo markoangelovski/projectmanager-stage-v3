@@ -19,3 +19,8 @@ code {
   height: 16px;
   vertical-align: text-bottom;
 }
+
+/* Removes the extra 300px bottom padding that Editor.js insters */
+/* #note-editor > div > div.codex-editor__redactor {
+  padding-bottom: 0px !important;
+} */
