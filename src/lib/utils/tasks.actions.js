@@ -42,14 +42,13 @@ const updateTaskDocs = (state, { taskId, payload }) => {
     acc[current.propName] = current.propValue;
     return acc;
   }, {});
+
+  // Change string done:"true" or "false" to boolean true or false
+  updateVals.done = updateVals.done === "true";
+
   // Update the new event values in state
   state.taskDocs = state.taskDocs.map(taskDoc => {
-    taskDoc.tasks = taskDoc.tasks.map(task => {
-      if (task._id === taskId) {
-        return { ...task, ...updateVals };
-      }
-      return task;
-    });
+    if (taskDoc._id === taskId) return { ...taskDoc, ...updateVals };
     return taskDoc;
   });
 };

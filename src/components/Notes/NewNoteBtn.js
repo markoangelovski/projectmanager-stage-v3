@@ -1,9 +1,9 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa";
 
-import { NewNoteIcon } from "./NewNote.styles.js";
+import { NewNoteIcon } from "./NewNoteBtn.styles.js";
 
-const NewNote = ({ setToggleNewNote }) => {
+const NewNoteBtn = ({ setToggleNewNote }) => {
   return (
     <NewNoteIcon
       title="Create a new note"
@@ -14,4 +14,4 @@ const NewNote = ({ setToggleNewNote }) => {
   );
 };
 
-export default NewNote;
+export default NewNoteBtn;

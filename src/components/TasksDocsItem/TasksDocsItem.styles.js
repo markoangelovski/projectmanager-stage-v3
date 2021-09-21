@@ -17,6 +17,7 @@ export const TableRowFix = styled.tr`
 
   span {
     cursor: pointer;
+    font-weight: 600;
   }
 `;
 

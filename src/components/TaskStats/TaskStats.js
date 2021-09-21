@@ -6,6 +6,7 @@ const TaskStats = ({ stat }) => {
       <div>Start: {stat.range.startDate}</div>
       <div>End: {stat.range.endDate}</div>
       <div>Task: {stat.task}</div>
+      <div>Description: {stat.description}</div>
       <div>Kanboard: {stat.kanboard}</div>
       <div>Total events: {stat.totalEvents}</div>
       <div>Total hours worked: {stat.totalHoursWorked}</div>

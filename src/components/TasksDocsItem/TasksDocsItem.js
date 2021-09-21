@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import moment from "moment";
 
 import MarkTaskDone from "../MarkTaskDone/MarkTaskDone.js";
 
 import NoteEditor from "../Notes/NoteEditor.js";
-import NewNote from "../Notes/NewNote.js";
+import NewNoteBtn from "../Notes/NewNoteBtn.js";
 
 import { EventRowCell, TableRowFix } from "./TasksDocsItem.styles.js";
 import NoteRow from "../Notes/NoteRow.js";
 import TaslExtermalLink from "./TaslExtermalLink.js";
+
+import { dateFromNow, dateFull } from "./Tasks.helpers.js";
 
 const DayStatsTableRow = ({ task }) => {
   const renders = React.useRef(0);
@@ -23,18 +24,19 @@ const DayStatsTableRow = ({ task }) => {
       <TableRowFix>
         <EventRowCell>
           <span onClick={() => setToggleDetails(!toggleDetails)}>
-            {task.title}, {renders.current++}
+            {task.title}
           </span>
+          , {renders.current++}
         </EventRowCell>
         <EventRowCell>{task.pl}</EventRowCell>
-        <EventRowCell>
-          {moment(task.dueDate).format("ddd, MMM Do, 'GG.")}
+        <EventRowCell title={dateFull(task.dueDate)}>
+          {dateFromNow(task.dueDate)}
         </EventRowCell>
-        <EventRowCell>
-          {moment(task.createdAt).format("ddd, MMM Do, 'GG.")}
+        <EventRowCell title={dateFull(task.createdAt)}>
+          {dateFromNow(task.createdAt)}
         </EventRowCell>
-        <EventRowCell>
-          {moment(task.updatedAt).format("ddd, MMM Do, 'GG.")}
+        <EventRowCell title={dateFull(task.updatedAt)}>
+          {dateFromNow(task.updatedAt)}
         </EventRowCell>
         <EventRowCell>
           {task.kanboard && <TaslExtermalLink link={task.kanboard} />}
@@ -43,7 +45,7 @@ const DayStatsTableRow = ({ task }) => {
             taskId={task._id}
             taskTitle={task.title}
           />
-          <NewNote setToggleNewNote={setToggleNewNote} />
+          <NewNoteBtn setToggleNewNote={setToggleNewNote} />
         </EventRowCell>
       </TableRowFix>
 

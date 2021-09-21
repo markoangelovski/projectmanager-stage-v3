@@ -1,8 +1,9 @@
 import React from "react";
-import moment from "moment";
 import edjsHTML from "editorjs-html";
 
 import DeleteNote from "./DeleteNote";
+
+import { dateFromNow, dateFull } from "../TasksDocsItem/Tasks.helpers.js";
 
 const NoteRow = ({ note }) => {
   const edjsParser = edjsHTML();
@@ -16,11 +17,11 @@ const NoteRow = ({ note }) => {
         colSpan="3"
         className="text-muted"
       ></td>
-      <td className="text-muted">
-        {moment(note.createdAt).format("ddd, MMM Do, 'GG.")}
+      <td className="text-muted" title={dateFull(note.createdAt)}>
+        {dateFromNow(note.createdAt)}
       </td>
-      <td className="text-muted">
-        {moment(note.updatedAt).format("ddd, MMM Do, 'GG.")}
+      <td className="text-muted" title={dateFull(note.updatedAt)}>
+        {dateFromNow(note.updatedAt)}
       </td>
       <td>
         <DeleteNote noteId={note._id} />
