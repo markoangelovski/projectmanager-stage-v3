@@ -6,8 +6,11 @@ import { notesConfig } from "./Notes.config";
 const NewNoteForm = ({ taskId, setToggleNewNote }) => {
   const { postNote } = useStoreActions(actions => actions);
 
-  const editor = new EditorJS(notesConfig);
-  console.log(`toggleNewNote from NewNoteForm: ` /* toggleNewNote */);
+  const editor = new EditorJS({
+    ...notesConfig,
+    holder: `note-editor-${taskId}`
+  });
+
   const handleSubmit = async e => {
     e.preventDefault();
     try {
@@ -25,7 +28,7 @@ const NewNoteForm = ({ taskId, setToggleNewNote }) => {
   return (
     <>
       <tr>
-        <td colSpan="6" id="note-editor"></td>
+        <td colSpan="6" id={`note-editor-${taskId}`}></td>
       </tr>
       <tr>
         <td colSpan="6">

@@ -6,7 +6,7 @@ export const notesConfig = {
   /**
    * Id of Element that should contain Editor instance
    */
-  holder: "note-editor",
+  // holder: "note-editor",
   placeholder: "Enter your note...",
   autofocus: true,
   tools: {
