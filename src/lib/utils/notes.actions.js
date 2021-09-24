@@ -1,4 +1,8 @@
-import { postNoteCall, deleteNoteCall } from "../drivers/Notes/notes.driver.js";
+import {
+  postNoteCall,
+  editNoteCall,
+  deleteNoteCall
+} from "../drivers/Notes/notes.driver.js";
 
 const updateTaskDocsWhenNoteCreated = (state, note) => {
   state.taskDocs = state.taskDocs.map(task => {
@@ -14,6 +18,28 @@ const postNote = async (actions, payload) => {
     const res = await postNoteCall(payload);
     if (!res.error) {
       actions.updateTaskDocsWhenNoteCreated(res.note);
+    }
+  } catch (error) {
+    console.warn(error);
+  }
+};
+
+const updateTaskDocsWhenNoteEdited = (state, note) => {
+  state.taskDocs = state.taskDocs.map(task => {
+    if (task._id === note.task) {
+      task.notes = task.notes.map(oldNote =>
+        oldNote._id === note._id ? { ...oldNote, ...note } : oldNote
+      );
+    }
+    return task;
+  });
+};
+
+const editNote = async (actions, payload) => {
+  try {
+    const res = await editNoteCall(payload);
+    if (!res.error) {
+      actions.updateTaskDocsWhenNoteEdited(res.note);
     }
   } catch (error) {
     console.warn(error);
@@ -42,6 +68,8 @@ const deleteNote = async (actions, noteId) => {
 export {
   updateTaskDocsWhenNoteCreated,
   postNote,
+  updateTaskDocsWhenNoteEdited,
+  editNote,
   updateTaskDocsWhenNoteDeleted,
   deleteNote
 };

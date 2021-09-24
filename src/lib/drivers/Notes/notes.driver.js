@@ -19,6 +19,23 @@ const postNoteCall = payload => {
   });
 };
 
+const editNoteCall = ({ noteId, data }) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${api}/${apiVersion}/notes/${noteId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // Credentials: include for setting the cookie in browser
+      credentials: "include",
+      body: JSON.stringify({ data })
+    })
+      .then(res => res.json())
+      .then(stats => resolve(stats))
+      .catch(error => reject(error));
+  });
+};
+
 const deleteNoteCall = noteId => {
   return new Promise((resolve, reject) => {
     fetch(`${api}/${apiVersion}/notes/${noteId}`, {
@@ -48,21 +65,4 @@ const deleteNoteCall = noteId => {
 //   });
 // };
 
-// const editEventCall = (eventId, payload) => {
-//   return new Promise((resolve, reject) => {
-//     fetch(`${api}/${apiVersion}/days/event.update/${eventId}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json"
-//       },
-//       // Credentials: include for setting the cookie in browser
-//       credentials: "include",
-//       body: JSON.stringify(payload)
-//     })
-//       .then(res => res.json())
-//       .then(stats => resolve(stats))
-//       .catch(error => reject(error));
-//   });
-// };
-
-export { postNoteCall, deleteNoteCall };
+export { postNoteCall, editNoteCall, deleteNoteCall };

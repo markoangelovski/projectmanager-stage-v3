@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 import MarkTaskDone from "../MarkTaskDone/MarkTaskDone.js";
 
-import NoteEditor from "../Notes/NoteEditor.js";
 import NewNoteBtn from "../Notes/NewNoteBtn.js";
+import NewNoteForm from "../Notes/NewNoteForm.js";
 
 import { EventRowCell, TableRowFix } from "./TasksDocsItem.styles.js";
 import NoteRow from "../Notes/NoteRow.js";
-import TaslExtermalLink from "./TaslExtermalLink.js";
+import TaskExtermalLink from "./TaskExtermalLink.js";
 
 import { dateFromNow, dateFull } from "./Tasks.helpers.js";
 
@@ -19,6 +19,7 @@ const DayStatsTableRow = ({ task }) => {
 
   const lastNote = task.notes[task.notes.length - 1];
 
+  // console.log(`toggleNewNote: `, toggleNewNote);
   return (
     <>
       <TableRowFix>
@@ -39,7 +40,7 @@ const DayStatsTableRow = ({ task }) => {
           {dateFromNow(task.updatedAt)}
         </EventRowCell>
         <EventRowCell>
-          {task.kanboard && <TaslExtermalLink link={task.kanboard} />}
+          {task.kanboard && <TaskExtermalLink link={task.kanboard} />}
           <MarkTaskDone
             done={task.done}
             taskId={task._id}
@@ -65,7 +66,7 @@ const DayStatsTableRow = ({ task }) => {
       )}
 
       {toggleNewNote && (
-        <NoteEditor taskId={task._id} setShowNoteEditor={setToggleNewNote} />
+        <NewNoteForm taskId={task._id} setToggleNewNote={setToggleNewNote} />
       )}
     </>
   );

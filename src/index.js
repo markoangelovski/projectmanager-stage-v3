@@ -10,12 +10,21 @@ import App from "./App";
 import store from "./lib/Model/store.model.js";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <StoreProvider store={store}>
-        <App />
-      </StoreProvider>
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <StoreProvider store={store}>
+      <App />
+    </StoreProvider>
+  </Router>,
   document.getElementById("root")
 );
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Router>
+//       <StoreProvider store={store}>
+//         <App />
+//       </StoreProvider>
+//     </Router>
+//   </React.StrictMode>,
+//   document.getElementById("root")
+// );

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-const TaslExtermalLink = ({ link }) => {
+const TaskExtermalLink = ({ link }) => {
   return (
     <a
       href={link}
@@ -14,4 +14,4 @@ const TaslExtermalLink = ({ link }) => {
   );
 };
 
-export default TaslExtermalLink;
+export default TaskExtermalLink;
