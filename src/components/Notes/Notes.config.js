@@ -1,6 +1,7 @@
 import Header from "@editorjs/header";
 import List from "@editorjs/list";
 import Embed from "@editorjs/embed";
+import Marker from "@editorjs/marker";
 
 export const notesConfig = {
   /**
@@ -9,6 +10,7 @@ export const notesConfig = {
   // holder: "note-editor",
   placeholder: "Enter your note...",
   autofocus: true,
+  logLevel: "INFO",
   tools: {
     header: {
       class: Header,
@@ -27,6 +29,10 @@ export const notesConfig = {
           coub: true
         }
       }
+    },
+    marker: {
+      class: Marker,
+      shortcut: "CMD+SHIFT+M"
     }
   }
 };

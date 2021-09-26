@@ -3,6 +3,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { useStoreActions, useStoreState } from "easy-peasy";
 
+import Filter from "../Filter/Filter.js";
+
 import "./NavMain.css";
 
 const NavMain = () => {
@@ -28,12 +30,7 @@ const NavMain = () => {
             document.getElementById("sidebarMenu").classList.toggle("show");
           }}
         />
-        <input
-          className="form-control form-control-dark w-100"
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-        ></input>
+        <Filter />
         <Nav as="ul" className="px-3">
           <Nav.Item as="li">
             <Nav.Link

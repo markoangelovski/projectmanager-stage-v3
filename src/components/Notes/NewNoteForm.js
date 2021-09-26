@@ -31,8 +31,11 @@ const NewNoteForm = ({ taskId, setToggleNewNote }) => {
         <td colSpan="6" id={`note-editor-${taskId}`}></td>
       </tr>
       <tr>
-        <td colSpan="6">
+        <td colSpan="5">
           <button onClick={handleSubmit}>Submit</button>
+        </td>
+        <td>
+          <button onClick={() => setToggleNewNote(false)}>Cancel</button>
         </td>
       </tr>
     </>

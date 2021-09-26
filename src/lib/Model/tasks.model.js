@@ -3,6 +3,8 @@ import { thunk, action } from "easy-peasy";
 import {
   getTaskDocs,
   setTaskDocs,
+  filterTaskDocs,
+  resetTaskDocs,
   setHasMoreTaskDocs,
   editTask,
   updateTaskDocs
@@ -11,6 +13,7 @@ import {
 const taslsStore = {
   // Tasks state
   taskDocs: [],
+  filteredTaskDocs: [],
   taskDocsSkip: 0,
   hasMoreTaskDocs: false,
 
@@ -20,6 +23,8 @@ const taslsStore = {
 
   // Tasks actions
   setTaskDocs: action((state, payload) => setTaskDocs(state, payload)),
+  filterTaskDocs: action((state, keyword) => filterTaskDocs(state, keyword)),
+  resetTaskDocs: action((state, payload) => resetTaskDocs(state, payload)),
   setHasMoreTaskDocs: action((state, payload) =>
     setHasMoreTaskDocs(state, payload)
   ),

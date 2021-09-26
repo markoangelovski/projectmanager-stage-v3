@@ -8,6 +8,7 @@ import NewNoteForm from "../Notes/NewNoteForm.js";
 import { EventRowCell, TableRowFix } from "./TasksDocsItem.styles.js";
 import NoteRow from "../Notes/NoteRow.js";
 import TaskExtermalLink from "./TaskExtermalLink.js";
+import EditDueDate from "./EditDueDate.js";
 
 import { dateFromNow, dateFull } from "./Tasks.helpers.js";
 
@@ -16,10 +17,10 @@ const DayStatsTableRow = ({ task }) => {
 
   const [toggleDetails, setToggleDetails] = useState(false);
   const [toggleNewNote, setToggleNewNote] = useState(false);
+  const [newDueDate, setNewDueDate] = useState();
 
   const lastNote = task.notes[task.notes.length - 1];
 
-  // console.log(`toggleNewNote: `, toggleNewNote);
   return (
     <>
       <TableRowFix>
@@ -30,8 +31,21 @@ const DayStatsTableRow = ({ task }) => {
           , {renders.current++}
         </EventRowCell>
         <EventRowCell>{task.pl}</EventRowCell>
-        <EventRowCell title={dateFull(task.dueDate)}>
-          {dateFromNow(task.dueDate)}
+        <EventRowCell
+          title={dateFull(task.dueDate)}
+          data-date={task.dueDate}
+          onDoubleClick={e => setNewDueDate(e.target.dataset.date)}
+        >
+          {!newDueDate ? (
+            dateFromNow(task.dueDate)
+          ) : (
+            <EditDueDate
+              taskId={task._id}
+              taskTitle={task.title}
+              date={parseInt(newDueDate)}
+              setNewDueDate={setNewDueDate}
+            />
+          )}
         </EventRowCell>
         <EventRowCell title={dateFull(task.createdAt)}>
           {dateFromNow(task.createdAt)}

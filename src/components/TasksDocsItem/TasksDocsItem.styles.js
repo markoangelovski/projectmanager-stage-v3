@@ -5,6 +5,10 @@ export const TableRowFix = styled.tr`
     border-top: 0;
   }
 
+  > td:nth-child(3) {
+    cursor: pointer;
+  }
+
   > td:last-child {
     display: flex;
     justify-content: space-between;

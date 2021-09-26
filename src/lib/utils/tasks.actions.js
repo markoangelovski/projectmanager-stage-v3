@@ -20,6 +20,25 @@ const setTaskDocs = (state, docs) => {
   state.taskDocs = [...state.taskDocs, ...docs];
 };
 
+const filterTaskDocs = (state, keyword) => {
+  const rgx = new RegExp(keyword, "i");
+  state.filteredTaskDocs =
+    keyword.length > 2
+      ? state.taskDocs.filter(
+          task =>
+            rgx.test(task.pl) ||
+            rgx.test(task.title) ||
+            rgx.test(task.description) ||
+            rgx.test(task.kanboard)
+        )
+      : [];
+};
+
+const resetTaskDocs = state => {
+  state.taskDocsSkip = 0;
+  state.taskDocs = [];
+};
+
 const setHasMoreTaskDocs = (state, stats) => {
   state.hasMoreTaskDocs = stats.remaining ? true : false;
 };
@@ -39,7 +58,13 @@ const editTask = async (actions, { taskId, payload }) => {
 const updateTaskDocs = (state, { taskId, payload }) => {
   // Extract values - payload=[{propName: "title", propValue: "Updated title"}, {propName: "done", propValue: "false"}];
   const updateVals = payload.reduce((acc, current) => {
-    acc[current.propName] = current.propValue;
+    // When updating the Task Due Date, the Date timestamp is passed as string. We need to convert it back to number.
+    const valueIsTimestamp = parseInt(current.propValue);
+    if (valueIsTimestamp) {
+      acc[current.propName] = valueIsTimestamp;
+    } else {
+      acc[current.propName] = current.propValue;
+    }
     return acc;
   }, {});
 
@@ -56,6 +81,8 @@ const updateTaskDocs = (state, { taskId, payload }) => {
 export {
   getTaskDocs,
   setTaskDocs,
+  filterTaskDocs,
+  resetTaskDocs,
   setHasMoreTaskDocs,
   editTask,
   updateTaskDocs

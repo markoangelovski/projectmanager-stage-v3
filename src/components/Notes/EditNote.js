@@ -3,7 +3,7 @@ import { FaEdit } from "react-icons/fa";
 
 import { EditNoteIcon } from "./EditNote.styles.js";
 
-const DeleteNote = ({ setToggleEditNote }) => {
+const EditNote = ({ setToggleEditNote }) => {
   return (
     <EditNoteIcon
       onClick={() => setToggleEditNote(prevState => !prevState)}
@@ -14,4 +14,4 @@ const DeleteNote = ({ setToggleEditNote }) => {
   );
 };
 
-export default DeleteNote;
+export default EditNote;
