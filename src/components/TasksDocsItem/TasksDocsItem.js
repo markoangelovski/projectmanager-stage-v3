@@ -5,12 +5,16 @@ import MarkTaskDone from "../MarkTaskDone/MarkTaskDone.js";
 import NewNoteBtn from "../Notes/NewNoteBtn.js";
 import NewNoteForm from "../Notes/NewNoteForm.js";
 
-import { EventRowCell, TableRowFix } from "./TasksDocsItem.styles.js";
+import {
+  EventRowCell,
+  EventRowCellDueDate,
+  TableRowFix
+} from "./TasksDocsItem.styles.js";
 import NoteRow from "../Notes/NoteRow.js";
 import TaskExtermalLink from "./TaskExtermalLink.js";
 import EditDueDate from "./EditDueDate.js";
 
-import { dateFromNow, dateFull } from "./Tasks.helpers.js";
+import { dateFromNow, dateFull, getHsl } from "./Tasks.helpers.js";
 
 const DayStatsTableRow = ({ task }) => {
   const renders = React.useRef(0);
@@ -31,13 +35,17 @@ const DayStatsTableRow = ({ task }) => {
           , {renders.current++}
         </EventRowCell>
         <EventRowCell>{task.pl}</EventRowCell>
-        <EventRowCell
+        <EventRowCellDueDate
           title={dateFull(task.dueDate)}
           data-date={task.dueDate}
           onDoubleClick={e => setNewDueDate(e.target.dataset.date)}
+          hsl={getHsl(task.dueDate)}
         >
           {!newDueDate ? (
-            dateFromNow(task.dueDate)
+            <>
+              <span></span>
+              {dateFromNow(task.dueDate)}
+            </>
           ) : (
             <EditDueDate
               taskId={task._id}
@@ -46,7 +54,7 @@ const DayStatsTableRow = ({ task }) => {
               setNewDueDate={setNewDueDate}
             />
           )}
-        </EventRowCell>
+        </EventRowCellDueDate>
         <EventRowCell title={dateFull(task.createdAt)}>
           {dateFromNow(task.createdAt)}
         </EventRowCell>

@@ -28,3 +28,17 @@ export const TableRowFix = styled.tr`
 export const EventRowCell = styled.td`
   white-space: nowrap;
 `;
+
+export const EventRowCellDueDate = styled.td`
+  white-space: nowrap;
+  display: flex;
+
+  > span {
+    background: ${props =>
+      props.hsl >= 0 ? `hsl(${props.hsl}, 100%, 50%, 0.5)` : `inherit`};
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+`;
