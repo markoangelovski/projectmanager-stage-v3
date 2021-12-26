@@ -1,13 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Project Manager v3 frontend
 
-## Available Scripts
+Frontend hosted on Github repos:
 
-In the project directory, you can run:
+- Staging: https://github.com/markoangelovski/projectmanager-stage-v3
+- Production: https://github.com/markoangelovski/projectmanager-prod-v3
 
-### `npm start`
+Git remotes:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- origin-staging: https://github.com/markoangelovski/projectmanager-stage-v3.git
+- origin-production: https://github.com/markoangelovski/projectmanager-prod-v3.git
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Build and deploy process:
+
+1. Local development done on branch "development"
+2. Stage changes need to be merged with branch "staging" before deployment to the staging environment
+3. Npm script "deploy:stage":
+   - pushes the last commit from branch "staging" to remote "origin-staging"
+   - builds the project locally with "stage" REACT_APP_API_CONFIG settings
+   - deploy script renames the output folder, deploys it and deletes it
+4. Stage changes need to be further merged with branch "master" before deployment to the production environment
+5. Npm script "deploy:prod":
+   - pushes the last commit from branch "master" to remote "origin-master"
+   - builds the project locally with "prod" REACT_APP_API_CONFIG settings
+   - deploy script renames the output folder, deploys it and deletes it

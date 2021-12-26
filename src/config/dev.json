@@ -9,10 +9,11 @@
   "GlobalContainer": "GTM-MSH9PKJ",
   "AGAdataLayer": {
     "GTM": {
-      "SiteEnvironment":"dev",
+      "SiteEnvironment": "dev",
       "SiteLocalContainer": "GTM-NNWHRC6",
       "GoogleAnalyticsLocal": "UA-179505223-1",
-      "Segment": "6z5fk23GsrGBhyijzsJR6tC5QwHLV4hH"
+      "Segment": "6z5fk23GsrGBhyijzsJR6tC5QwHLV4hH",
+      "AGAWidget": true
     }
   }
 }
