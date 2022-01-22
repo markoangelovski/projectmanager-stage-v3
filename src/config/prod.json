@@ -6,8 +6,7 @@
     "apiVersion": "v1",
     "apiVersionBeta": "v1.1"
   },
-  "CNAME": "jbot.kovozi.ga",
-  "CNAME1": "jbot.angelovski.ga",
+  "CNAME": "jbot.angelovski.ga",
   "GlobalContainer": "GTM-MSH9PKJ",
   "AGAdataLayer": {
     "GTM": {
