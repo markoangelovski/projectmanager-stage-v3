@@ -1,6 +1,5 @@
 {
-  "canonical": "https://jbot.kovozi.ga",
-  "canonical1": "https://jbot.angelovski.ga",
+  "canonical": "https://jbot.angelovski.ga",
   "pmspa-api": {
     "api": "https://pmspa-api.herokuapp.com",
     "apiVersion": "v1",
