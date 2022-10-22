@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const EditEventIcon = styled.div`
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 5px 0 0 5px;
 
   svg {
     color: ${props => {

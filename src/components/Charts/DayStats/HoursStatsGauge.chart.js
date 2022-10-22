@@ -8,11 +8,11 @@ const HoursStatsGauge = ({ seriesData, type }) => {
     hours = Math.round((seriesData / 10) * 100);
     color = "#008FFB";
   }
-  if (type === "booked" || type === "pending") {
+  if (type === "booked" || type === "external") {
     hours = Math.round((seriesData / 7.5) * 100);
     color = "#00f970";
   }
-  if (type === "pending") color = "#fcc202";
+  if (type === "external") color = "#fcc202";
   if (type === "overtime") {
     hours = Math.round((seriesData / 2) * 100);
     color = "#f90010";

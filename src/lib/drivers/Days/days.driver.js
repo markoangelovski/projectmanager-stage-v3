@@ -1,5 +1,5 @@
 const {
-  "pmspa-api": { api, apiVersion }
+  "pmspa-api": { api, apiVersion, api_booking_machine }
 } = require(`../../../config/${process.env.REACT_APP_API_CONFIG}.json`);
 
 const getEventsCall = payload => {
@@ -32,4 +32,49 @@ const editEventCall = (eventId, payload) => {
   });
 };
 
-export { getEventsCall, editEventCall };
+const bookEventCall = (eventId, day, amount) => {
+  return new Promise((resolve, reject) => {
+    let status;
+    fetch(
+      `${api_booking_machine}/book?eventId=${eventId}&day=${day}&amount=${amount}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: document.cookie
+            .split("; ")
+            .find(cookie => cookie.includes("Bearer"))
+            .split("=")[1]
+        }
+      }
+    )
+      .then(res => {
+        status = res.status;
+        return res.json();
+      })
+      .then(stats => resolve({ status, ...stats }))
+      .catch(error => reject(error));
+  });
+};
+
+const deleteBookingCall = bookingId => {
+  return new Promise((resolve, reject) => {
+    let status;
+    fetch(`${api_booking_machine}/delete?bookingId=${bookingId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: document.cookie
+          .split("; ")
+          .find(cookie => cookie.includes("Bearer"))
+          .split("=")[1]
+      }
+    })
+      .then(res => {
+        status = res.status;
+        return res.json();
+      })
+      .then(stats => resolve({ status, ...stats }))
+      .catch(error => reject(error));
+  });
+};
+
+export { getEventsCall, editEventCall, bookEventCall, deleteBookingCall };

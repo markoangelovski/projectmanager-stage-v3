@@ -2,6 +2,9 @@
   "canonical": "http://localhost:8080",
   "pmspa-api": {
     "api": "http://localhost:3000",
+    "api_main": "",
+    "api_legacy": "",
+    "api_booking_machine": "http://localhost:8081",
     "apiVersion": "v1",
     "apiVersionBeta": "v1.1"
   },
