@@ -30,7 +30,10 @@ const logInCall = payload => {
       credentials: "include",
       body: JSON.stringify(payload)
     })
-      .then(res => res.json())
+      .then(res => {
+        document.cookie = "booking=" + res.headers.get("X-Auth");
+        return res.json();
+      })
       .then(token => resolve(token))
       .catch(error => reject(error));
   });
