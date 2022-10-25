@@ -5,8 +5,7 @@ import {
   setDayStart,
   setDayEnd,
   editEvent,
-  // updateEvent,
-  updateEvent1,
+  updateEvent,
   bookEvent,
   deleteBooking
 } from "../utils/events.actions.js";
@@ -24,8 +23,7 @@ const eventsStore = {
   // Events actions
   setDayStart: action((state, dayStart) => setDayStart(state, dayStart)),
   setDayEnd: action((state, dayEnd) => setDayEnd(state, dayEnd)),
-  // updateEvent: action((state, payload) => updateEvent(state, payload)),
-  updateEvent1: action((state, payload) => updateEvent1(state, payload))
+  updateEvent: action((state, payload) => updateEvent(state, payload))
 };
 
 export default eventsStore;

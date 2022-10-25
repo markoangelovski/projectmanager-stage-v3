@@ -24,29 +24,16 @@ const editEvent = async (actions, { eventId, payload }) => {
   }
 };
 
-// const updateEvent = (state, { eventId, payload }) => {
-//   // Extract values - payload=[{propName: "title", propValue: "Updated title"}, {propName: "booked", propValue: "false"}];
-//   const updateVals = payload.reduce((acc, current) => {
-//     acc[current.propName] = current.propValue;
-//     return acc;
-//   }, {});
-//   // Update the new event values in state
-//   state.dayStats = state.dayStats.map(dayStat => {
-//     dayStat.events = dayStat.events.map(event => {
-//       if (event.eventId === eventId) {
-//         return { ...event, ...updateVals };
-//       }
-//       return event;
-//     });
-//     return dayStat;
-//   });
-// };
-
-const updateEvent1 = (state, updatedEvent) => {
+const updateEvent = (state, updatedEvent) => {
   state.dayStats.map(dayStat => {
     dayStat.events = dayStat.events.map(event => {
       if (event.eventId === updatedEvent.eventId) {
-        return updatedEvent;
+        return {
+          task: event.task,
+          taskId: event.taskId,
+          kanboard: event.kanboard,
+          ...updatedEvent
+        };
       }
       return event;
     });
@@ -73,7 +60,7 @@ const bookEvent = async (actions, { eventId, day, amount }) => {
     if (!res.error) {
       const correctedEvent = correctEvent(res.event);
 
-      actions.updateEvent1(correctedEvent);
+      actions.updateEvent(correctedEvent);
     } else {
       alert(res.error);
     }
@@ -89,7 +76,7 @@ const deleteBooking = async (actions, { bookingId }) => {
     if (!res.error) {
       const correctedEvent = correctEvent(res.event);
 
-      actions.updateEvent1(correctedEvent);
+      actions.updateEvent(correctedEvent);
     } else {
       alert(res.error);
     }
@@ -102,8 +89,7 @@ export {
   setDayStart,
   setDayEnd,
   editEvent,
-  // updateEvent,
-  updateEvent1,
+  updateEvent,
   deleteBooking,
   bookEvent
 };

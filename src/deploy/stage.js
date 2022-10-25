@@ -33,6 +33,6 @@ ghpages.publish(
     console.log(
       "Deploy to https://markoangelovski.github.io/projectmanager-stage-v3 completed."
     );
-    fs.rmdirSync(stage, { recursive: true });
+    fs.rmSync(stage, { recursive: true });
   }
 );
