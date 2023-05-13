@@ -4,7 +4,9 @@
     "api": "https://pm-api-staging-prod-projects-f0597n.mo5.mogenius.io",
     "api_main": "https://project-manager-legacy-api.azurewebsites.net",
     "api_legacy": "https://pmspa-api.herokuapp.com",
-    "api_booking_machine": "https://booking-machin-prod-projects-f0597n.mo5.mogenius.io",
+    "api_booking_machine": "https://booking-machine.azurewebsites.net",
+    "api_booking_machine_legacy_1": "https://booking-machine.up.railway.app",
+    "api_booking_machine_legacy_0": "https://booking-machin-prod-projects-f0597n.mo5.mogenius.io",
     "apiVersion": "v1",
     "apiVersionBeta": "v1.1"
   },
