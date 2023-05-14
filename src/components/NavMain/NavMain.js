@@ -19,6 +19,7 @@ const NavMain = () => {
 
   useEffect(() => {
     (async () => {
+      console.log("api_booking_machine url: ", api_booking_machine);
       // Checks if booking machine is alive. The call is here instead of in the Store since I couldn't be bothered now on May 14th 23'
       fetch(`${api_booking_machine}/health`, {
         headers: {
