@@ -31,3 +31,22 @@
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-container .status {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.stats-container .status {
+  background-color: red;
+}
+
+.stats-container .status.ok {
+  background-color: green;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { useStoreActions, useStoreState } from "easy-peasy";
@@ -7,9 +7,36 @@ import Filter from "../Filter/Filter.js";
 
 import "./NavMain.css";
 
+const {
+  "pmspa-api": { api_booking_machine }
+} = require(`../../config/${process.env.REACT_APP_API_CONFIG}.json`);
+
 const NavMain = () => {
-  const { isLoggedIn } = useStoreState(state => state);
-  const { logOut } = useStoreActions(actions => actions);
+  const [isBookingMachineOk, setIsBookingMachineOk] = useState(false);
+
+  const { isLoggedIn } = useStoreState((state) => state);
+  const { logOut } = useStoreActions((actions) => actions);
+
+  useEffect(() => {
+    (async () => {
+      // Checks if booking machine is alive. The call is here instead of in the Store since I couldn't be bothered now on May 14th 23'
+      fetch(`${api_booking_machine}/health`, {
+        headers: {
+          Authorization: document.cookie
+            .split("; ")
+            .find((cookie) => cookie.includes("Bearer"))
+            .split("=")[1]
+        }
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === "ok") {
+            setIsBookingMachineOk(true);
+          }
+        })
+        .catch((err) => console.warn(err));
+    })();
+  }, []);
 
   return (
     isLoggedIn && (
@@ -20,8 +47,14 @@ const NavMain = () => {
         expand="md"
         className="sticky-top flex-md-nowrap p-0 shadow"
       >
-        <Navbar.Brand className="col-md-3 col-lg-2 mr-0 px-3">
-          jBot
+        <Navbar.Brand className="col-md-3 col-lg-2 mr-0 px-3 stats-container">
+          jBot{" "}
+          <span
+            title={`Booking Machine online status. We are ${
+              isBookingMachineOk ? "live! :)" : "not live. :("
+            }`}
+            className={`status ${isBookingMachineOk && "ok"}`}
+          ></span>
         </Navbar.Brand>
         <Navbar.Toggle
           className="position-absolute"
