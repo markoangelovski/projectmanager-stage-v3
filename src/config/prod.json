@@ -1,7 +1,8 @@
 {
   "canonical": "https://jbot.angelovski.ga",
   "pmspa-api": {
-    "api": "https://pmspa-api.up.railway.app",
+    "api": "https://pmspa-api.azurewebsites.net",
+    "api_legacy3": "https://pmspa-api.up.railway.app",
     "api_legacy2": "https://projectmanager-prod-projects-fazagc.mo1.mogenius.io",
     "api_main": "https://project-manager-legacy-api.azurewebsites.net",
     "api_legacy": "https://pmspa-api.herokuapp.com",
